@@ -15,10 +15,19 @@ export default ArticleScreen = props => {
   const {route} = props;
   const {article} = route.params;
 
+  const user = useSelector(state => state.user);
+
   const dispatch = useDispatch();
+
+  const isClipped = () => {
+    return user.clips.some(clip => clip.url === article.url);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
+      <Text style={{margin: 10, fontSize: 30}}>
+        {isClipped() ? 'true' : 'false'}
+      </Text>
       <TouchableOpacity
         onPress={() => {
           dispatch(addClip({clip: article}));
