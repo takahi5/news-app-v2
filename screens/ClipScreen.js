@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
 
 export default ClipScreen = ({navigation}) => {
   const user = useSelector(state => state.user);
+
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
