@@ -14,7 +14,13 @@ const styles = StyleSheet.create({
 export default function App() {
   return (
     <View style={styles.container}>
-      <ListItem />
+      <ListItem
+        imageUrl="https://picsum.photos/200/300"
+        title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+      minim veniam,"
+        author="SampleNews"
+      />
     </View>
   );
 }
