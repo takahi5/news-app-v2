@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, SafeAreaView, Text, TouchableOpacity} from 'react-native';
 import {WebView} from 'react-native-webview';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {addClip, deleteClip} from '../store/actions/user';
 
 const styles = StyleSheet.create({
@@ -11,21 +11,24 @@ const styles = StyleSheet.create({
   },
 });
 
-const ArticleScreen = props => {
-  const {route, addClip, deleteClip} = props;
+export default ArticleScreen = props => {
+  const {route} = props;
   const {article} = route.params;
+
+  const dispatch = useDispatch();
+
   return (
     <SafeAreaView style={styles.container}>
       <TouchableOpacity
         onPress={() => {
-          addClip({clip: article});
+          dispatch(addClip({clip: article}));
         }}>
         <Text style={{margin: 10, fontSize: 30}}>Fav</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         onPress={() => {
-          deleteClip({clip: article});
+          dispatch(deleteClip({clip: article}));
         }}>
         <Text style={{margin: 10, fontSize: 30}}>Del</Text>
       </TouchableOpacity>
@@ -33,12 +36,3 @@ const ArticleScreen = props => {
     </SafeAreaView>
   );
 };
-
-const mapStateProps = state => {
-  return {
-    user: state.user,
-  };
-};
-
-const mapDispatchToProps = {addClip, deleteClip};
-export default connect(mapStateProps, mapDispatchToProps)(ArticleScreen);
