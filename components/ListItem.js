@@ -11,6 +11,8 @@ const styles = StyleSheet.create({
   },
   leftContainer: {
     width: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   rightContainer: {
     flex: 1,
@@ -24,15 +26,17 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: 'gray',
   },
+  image: {
+    width: 95,
+    height: 95,
+  },
 });
 
 const ListItem = ({imageUrl, title, author, onPress}) => {
   return (
     <TouchableOpacity style={styles.itemContainer} onPress={onPress}>
       <View style={styles.leftContainer}>
-        {!!imageUrl && (
-          <Image style={{width: 100, height: 100}} source={{uri: imageUrl}} />
-        )}
+        {!!imageUrl && <Image style={styles.image} source={{uri: imageUrl}} />}
       </View>
       <View style={styles.rightContainer}>
         <Text numberOfLines={3} style={styles.text}>
