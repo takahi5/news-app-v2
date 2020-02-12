@@ -39,7 +39,9 @@ export default HomeScreen = props => {
             imageUrl={item.urlToImage}
             title={item.title}
             author={item.author}
-            onPress={() => props.navigation.navigate('Article')}
+            onPress={() =>
+              props.navigation.navigate('Article', {article: item})
+            }
           />
         )}
         keyExtractor={(item, index) => index.toString()}
