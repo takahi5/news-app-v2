@@ -1,27 +1,21 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import ListItem from './components/ListItem';
+import articles from './dummies/articles';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
+  const items = articles.map((article, index) => {
+    return (
       <ListItem
-        imageUrl="https://picsum.photos/id/10/200/200"
-        title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation"
-        author="SampleNews"
+        imageUrl={article.urlToImage}
+        title={article.title}
+        author={article.author}
+        key={index.toString()}
       />
-      <ListItem
-        imageUrl="https://picsum.photos/id/10/200/200"
-        title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation"
-        author="SampleNews"
-      />
-      <ListItem
-        imageUrl="https://picsum.photos/id/10/200/200"
-        title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation"
-        author="SampleNews"
-      />
-    </View>
-  );
+    );
+  });
+
+  return <View style={styles.container}>{items}</View>;
 }
 
 const styles = StyleSheet.create({
