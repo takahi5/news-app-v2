@@ -1,22 +1,13 @@
 import React from 'react';
-import {StyleSheet, View, FlatList, SafeAreaView} from 'react-native';
-import ListItem from './components/ListItem';
-import articles from './dummies/articles';
+import {StyleSheet, View} from 'react-native';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <FlatList
-        data={articles}
-        renderItem={({item}) => (
-          <ListItem
-            imageUrl={item.urlToImage}
-            title={item.title}
-            author={item.author}
-          />
-        )}
-        keyExtractor={(item, index) => index.toString()}
-      />
+      <View style={styles.itemContainer}>
+        <View style={styles.leftContainer} />
+        <View style={styles.rightContainer} />
+      </View>
     </View>
   );
 }
@@ -25,6 +16,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   itemContainer: {
     height: 100,
@@ -34,18 +27,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   leftContainer: {
+    backgroundColor: 'red',
     width: 100,
   },
   rightContainer: {
+    backgroundColor: 'blue',
     flex: 1,
-    padding: 10,
-    justifyContent: 'space-between',
-  },
-  text: {
-    fontSize: 16,
-  },
-  subText: {
-    fontSize: 12,
-    color: 'gray',
   },
 });
