@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, Image} from 'react-native';
+import {StyleSheet, View, Image, Text} from 'react-native';
 
 export default function App() {
   return (
@@ -11,7 +11,14 @@ export default function App() {
             source={{uri: 'https://picsum.photos/id/10/200/200'}}
           />
         </View>
-        <View style={styles.rightContainer} />
+        <View style={styles.rightContainer}>
+          <Text numberOfLines={3}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation
+          </Text>
+          <Text>ReactNews</Text>
+        </View>
       </View>
     </View>
   );
@@ -32,11 +39,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   leftContainer: {
-    backgroundColor: 'red',
     width: 100,
   },
   rightContainer: {
-    backgroundColor: 'blue',
     flex: 1,
   },
 });
