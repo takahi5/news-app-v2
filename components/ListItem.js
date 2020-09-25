@@ -1,25 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, Image, Text} from 'react-native';
-
-const ListItem = ({imageUrl, title, author}) => {
-  return (
-    <View style={styles.itemContainer}>
-      <View style={styles.leftContainer}>
-        {!!imageUrl && (
-          <Image style={{width: 100, height: 100}} source={{uri: imageUrl}} />
-        )}
-      </View>
-      <View style={styles.rightContainer}>
-        <Text numberOfLines={3} style={styles.text}>
-          {title}
-        </Text>
-        <Text style={styles.subText}>{author}</Text>
-      </View>
-    </View>
-  );
-};
-
-export default ListItem;
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 
 const styles = StyleSheet.create({
   itemContainer: {
@@ -34,7 +14,7 @@ const styles = StyleSheet.create({
   },
   rightContainer: {
     flex: 1,
-    padding: 10,
+    padding: 16,
     justifyContent: 'space-between',
   },
   text: {
@@ -45,3 +25,23 @@ const styles = StyleSheet.create({
     color: 'gray',
   },
 });
+
+const ListItem = ({imageUrl, title, author, onPress}) => {
+  return (
+    <TouchableOpacity style={styles.itemContainer} onPress={onPress}>
+      <View style={styles.leftContainer}>
+        {!!imageUrl && (
+          <Image style={{width: 100, height: 100}} source={{uri: imageUrl}} />
+        )}
+      </View>
+      <View style={styles.rightContainer}>
+        <Text numberOfLines={3} style={styles.text}>
+          {title}
+        </Text>
+        <Text style={styles.subText}>{author}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+};
+
+export default ListItem;
