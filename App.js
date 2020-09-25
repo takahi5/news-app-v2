@@ -17,7 +17,6 @@ export default function App() {
     try {
       const response = await axios.get(URL);
       setArticles(response.data.articles);
-      console.log(response);
     } catch (error) {
       console.error(error);
     }
