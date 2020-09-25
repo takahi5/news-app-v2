@@ -1,47 +1,16 @@
-import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, FlatList, SafeAreaView} from 'react-native';
-import axios from 'axios';
-import Constants from 'expo-constants';
-import ListItem from './components/ListItem';
+import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import HomeScreen from './screens/HomeScreen';
 
-const URL = `https://newsapi.org/v2/top-headlines?country=jp&category=business&apiKey=${Constants.manifest.extra.newsApiKey}`;
+const Stack = createStackNavigator();
 
 export default function App() {
-  const [articles, setArticles] = useState([]);
-
-  useEffect(() => {
-    fetchArticles();
-  }, []);
-
-  const fetchArticles = async () => {
-    try {
-      const response = await axios.get(URL);
-      setArticles(response.data.articles);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        data={articles}
-        renderItem={({item}) => (
-          <ListItem
-            imageUrl={item.urlToImage}
-            title={item.title}
-            author={item.author}
-          />
-        )}
-        keyExtractor={(item, index) => index.toString()}
-      />
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});
