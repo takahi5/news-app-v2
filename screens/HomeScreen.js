@@ -14,18 +14,18 @@ const styles = StyleSheet.create({
 
 const URL = `https://newsapi.org/v2/top-headlines?country=jp&category=business&apiKey=${Constants.manifest.extra.newsApiKey}`;
 
-export default HomeScreen = props => {
+export default HomeScreen = (props) => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetchArticles();
+    fetchArticles(1);
   }, []);
 
-  const fetchArticles = async () => {
+  const fetchArticles = async (page) => {
     setLoading(true);
     try {
-      const response = await axios.get(URL);
+      const response = await axios.get(`${URL}&page=${page}`);
       setArticles(response.data.articles);
     } catch (error) {
       console.error(error);
