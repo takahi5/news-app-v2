@@ -18,6 +18,7 @@ export default HomeScreen = (props) => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
   const pageRef = useRef(1);
+  const fetchedAllRef = useRef(false);
 
   useEffect(() => {
     fetchArticles(1);
@@ -27,8 +28,12 @@ export default HomeScreen = (props) => {
     setLoading(true);
     try {
       const response = await axios.get(`${URL}&page=${page}`);
-      const newArticles = [...articles, ...response.data.articles];
-      setArticles(newArticles);
+      if (response.data.articles.length > 0) {
+        const newArticles = [...articles, ...response.data.articles];
+        setArticles(newArticles);
+      } else {
+        fetchedAllRef.current = true;
+      }
     } catch (error) {
       console.error(error);
     }
@@ -36,8 +41,10 @@ export default HomeScreen = (props) => {
   };
 
   const onEndReached = () => {
-    pageRef.current = pageRef.current + 1;
-    fetchArticles(pageRef.current);
+    if (!fetchedAllRef.current) {
+      pageRef.current = pageRef.current + 1;
+      fetchArticles(pageRef.current);
+    }
   };
 
   return (
