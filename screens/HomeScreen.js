@@ -26,11 +26,16 @@ export default HomeScreen = (props) => {
     setLoading(true);
     try {
       const response = await axios.get(`${URL}&page=${page}`);
-      setArticles(response.data.articles);
+      const newArticles = [...articles, ...response.data.articles];
+      setArticles(newArticles);
     } catch (error) {
       console.error(error);
     }
     setLoading(false);
+  };
+
+  const onEndReached = () => {
+    fetchArticles(1);
   };
 
   return (
@@ -49,6 +54,7 @@ export default HomeScreen = (props) => {
           />
         )}
         keyExtractor={(item, index) => index.toString()}
+        onEndReached={onEndReached}
       />
     </SafeAreaView>
   );
