@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {StyleSheet, FlatList, SafeAreaView} from 'react-native';
 import Constants from 'expo-constants';
 import axios from 'axios';
@@ -17,6 +17,7 @@ const URL = `https://newsapi.org/v2/top-headlines?country=jp&category=business&a
 export default HomeScreen = (props) => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
+  const pageRef = useRef(1);
 
   useEffect(() => {
     fetchArticles(1);
@@ -35,7 +36,8 @@ export default HomeScreen = (props) => {
   };
 
   const onEndReached = () => {
-    fetchArticles(1);
+    pageRef.current = pageRef.current + 1;
+    fetchArticles(pageRef.current);
   };
 
   return (
