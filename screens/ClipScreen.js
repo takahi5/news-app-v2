@@ -10,8 +10,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ClipScreen = ({navigation}) => {
-  const user = useSelector(state => state.user);
+export default function ClipScreen({navigation}) {
+  const user = useSelector((state) => state.user);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -29,4 +29,4 @@ export default ClipScreen = ({navigation}) => {
       />
     </SafeAreaView>
   );
-};
+}

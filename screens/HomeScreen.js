@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
 
 const URL = `https://newsapi.org/v2/top-headlines?country=jp&category=business&apiKey=${Constants.manifest.extra.newsApiKey}`;
 
-export default HomeScreen = props => {
+export default function HomeScreen(props) {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -52,4 +52,4 @@ export default HomeScreen = props => {
       />
     </SafeAreaView>
   );
-};
+}

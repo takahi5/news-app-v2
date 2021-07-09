@@ -13,16 +13,16 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ArticleScreen = props => {
+export default function ArticleScreen(props) {
   const {route} = props;
   const {article} = route.params;
 
-  const user = useSelector(state => state.user);
+  const user = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
 
   const isClipped = () => {
-    return user.clips.some(clip => clip.url === article.url);
+    return user.clips.some((clip) => clip.url === article.url);
   };
 
   const toggleClip = () => {
@@ -45,4 +45,4 @@ export default ArticleScreen = props => {
       />
     </SafeAreaView>
   );
-};
+}
