@@ -1,12 +1,11 @@
 {
   "expo": {
-    "name": "Blank Template",
-    "slug": "news-app-v2",
-    "privacy": "public",
-    "platforms": ["ios", "android", "web"],
+    "name": "news-app",
+    "slug": "news-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -19,8 +18,17 @@
     "ios": {
       "supportsTablet": true
     },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
     "extra": {
-      "newsApiKey": "516b388c96944dbc959cf3e3e9a1341e"
+      "newsApiKey": "YOUR-API-KEY"
     }
   }
 }
