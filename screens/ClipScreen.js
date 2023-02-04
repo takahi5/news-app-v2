@@ -1,32 +1,30 @@
-import React from 'react';
-import {useSelector} from 'react-redux';
-import {StyleSheet, SafeAreaView, FlatList} from 'react-native';
-import ListItem from '../components/ListItem';
+import { StyleSheet, SafeAreaView, FlatList } from "react-native";
+import { useSelector } from "react-redux";
+import { ListItem } from "../components/ListItem";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});
-
-export default function ClipScreen({navigation}) {
-  const user = useSelector((state) => state.user);
-
+export const ClipScreen = ({ navigation }) => {
+  const clips = useSelector((state) => state.user.clips);
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        data={user.clips}
-        renderItem={({item}) => (
+        data={clips}
+        renderItem={({ item }) => (
           <ListItem
             imageUrl={item.urlToImage}
             title={item.title}
             author={item.author}
-            onPress={() => navigation.navigate('Article', {article: item})}
+            onPress={() => navigation.navigate("Article", { article: item })}
           />
         )}
         keyExtractor={(item, index) => index.toString()}
       />
     </SafeAreaView>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#eee",
+  },
+});

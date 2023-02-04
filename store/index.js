@@ -1,13 +1,21 @@
-import {createStore, combineReducers} from 'redux';
-import {composeWithDevTools} from 'redux-devtools-extension';
-import {AsyncStorage} from 'react-native';
-import {persistReducer, persistStore} from 'redux-persist';
-import userReducer from './reducers/user';
+import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers } from "redux";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+import userReducer from "./userSlice";
 
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage: AsyncStorage,
-  whitelist: ['user'],
 };
 
 const rootReducer = combineReducers({
@@ -16,7 +24,15 @@ const rootReducer = combineReducers({
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const store = createStore(persistedReducer, composeWithDevTools());
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      // warningを防止: https://github.com/rt2zz/redux-persist/issues/988#issuecomment-552242978
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+});
 
 export const persistor = persistStore(store);
-export default store;

@@ -1,42 +1,10 @@
-import React from 'react';
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import { StyleSheet, Image, View, Text, TouchableOpacity } from "react-native";
 
-const styles = StyleSheet.create({
-  itemContainer: {
-    height: 100,
-    width: '100%',
-    borderColor: 'gray',
-    borderWidth: 1,
-    flexDirection: 'row',
-  },
-  leftContainer: {
-    width: 100,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  rightContainer: {
-    flex: 1,
-    padding: 16,
-    justifyContent: 'space-between',
-  },
-  text: {
-    fontSize: 16,
-  },
-  subText: {
-    fontSize: 12,
-    color: 'gray',
-  },
-  image: {
-    width: 95,
-    height: 95,
-  },
-});
-
-const ListItem = ({imageUrl, title, author, onPress}) => {
+export const ListItem = ({ imageUrl, title, author, onPress }) => {
   return (
     <TouchableOpacity style={styles.itemContainer} onPress={onPress}>
       <View style={styles.leftContainer}>
-        {!!imageUrl && <Image style={styles.image} source={{uri: imageUrl}} />}
+        {!!imageUrl && <Image style={{ width: 100, height: 100 }} source={{ uri: imageUrl }} />}
       </View>
       <View style={styles.rightContainer}>
         <Text numberOfLines={3} style={styles.text}>
@@ -48,4 +16,27 @@ const ListItem = ({imageUrl, title, author, onPress}) => {
   );
 };
 
-export default ListItem;
+const styles = StyleSheet.create({
+  itemContainer: {
+    height: 100,
+    width: "100%",
+    flexDirection: "row",
+    backgroundColor: "#fff",
+    marginVertical: 5,
+  },
+  leftContainer: {
+    width: 100,
+  },
+  rightContainer: {
+    flex: 1,
+    padding: 10,
+    justifyContent: "space-between",
+  },
+  text: {
+    fontSize: 16,
+  },
+  subText: {
+    fontSize: 12,
+    color: "gray",
+  },
+});
